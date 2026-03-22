@@ -1,5 +1,7 @@
 package com.sna.practice.service.service.impl;
 
+import com.sna.practice.exception.AlreadyExistsException;
+import com.sna.practice.exception.NotFoundException;
 import com.sna.practice.mapper.UserMapper;
 import com.sna.practice.model.dto.UserDTO;
 import com.sna.practice.model.entity.User;
@@ -22,7 +24,7 @@ public class UserServiceImpl implements UserService {
     public UserResponse getUserById(Long id) {
         User user = userRepository.findById(id);
         if (user == null) {
-            throw new RuntimeException("User not found with id: " + id);
+            throw new NotFoundException("User not found with id: " + id);  // ✅
         }
         return userMapper.toResponse(user);
     }
@@ -36,7 +38,7 @@ public class UserServiceImpl implements UserService {
     public UserResponse createUser(UserDTO dto) {
         User existingUser = userRepository.findByUsername(dto.getUsername());
         if (existingUser != null) {
-            throw new RuntimeException("Username already exists: " + dto.getUsername());
+            throw new AlreadyExistsException("Username already exists: " + dto.getUsername());  // ✅
         }
         User user  = userMapper.toEntity(dto);
         User saved = userRepository.insert(user);
@@ -47,7 +49,7 @@ public class UserServiceImpl implements UserService {
     public UserResponse updateUser(Long id, UserDTO dto) {
         User existing = userRepository.findById(id);
         if (existing == null) {
-            throw new RuntimeException("User not found with id: " + id);
+            throw new NotFoundException("User not found with id: " + id);  // ✅
         }
         userMapper.updateEntityFromDTO(dto, existing);
         existing.setId(id);
@@ -59,7 +61,7 @@ public class UserServiceImpl implements UserService {
     public void deleteUser(Long id) {
         User existing = userRepository.findById(id);
         if (existing == null) {
-            throw new RuntimeException("User not found with id: " + id);
+            throw new NotFoundException("User not found with id: " + id);  // ✅
         }
         userRepository.deleteById(id);
     }
