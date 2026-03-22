@@ -1,4 +1,4 @@
-package com.sna.practice.model.request;
+package com.sna.practice.model.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,9 +7,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserResponseDTO {
+public class UserResponse {
     private Long   id;
     private String username;
     private String email;
-    private String fullName;   // ✅ password excluded
+    private String fullName;
+    private AddressResponse address;
 }
