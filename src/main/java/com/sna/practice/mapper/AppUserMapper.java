@@ -2,7 +2,7 @@ package com.sna.practice.mapper;
 
 import com.sna.practice.model.dto.UserDTO;
 import com.sna.practice.model.entity.User;
-import com.sna.practice.model.request.UserResponseDTO;
+import com.sna.practice.model.response.UserResponse;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
@@ -20,10 +20,10 @@ public class AppUserMapper {
         return modelMapper.map(dto, User.class);
     }
 
-    public UserResponseDTO toResponseDTO(User user) {
-        return modelMapper.map(user, UserResponseDTO.class);
+    public UserResponse toResponseDTO(User user) {
+        return modelMapper.map(user, UserResponse.class);
     }
-    public List<UserResponseDTO> toResponseDTOList(List<User> users) {
+    public List<UserResponse> toResponseDTOList(List<User> users) {
         return users.stream()
                 .map(this::toResponseDTO)
                 .collect(Collectors.toList());

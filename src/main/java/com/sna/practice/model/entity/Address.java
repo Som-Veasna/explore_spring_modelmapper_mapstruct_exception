@@ -3,15 +3,12 @@ package com.sna.practice.model.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class Address {
     private Long   id;
-    private String username;
-    private String email;
-    private String password;
-    private String fullName;
-    private Address address;
+    private String street;
+    private String city;
+    private String country;
 }

@@ -1,5 +1,4 @@
 package com.sna.practice.model.dto;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,10 +6,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDTO {
-    private String username;
-    private String email;
-    private String password;
-    private String fullName;
-    private Integer addressId;
+public class AddressDTO {
+    private String street;
+    private String city;
+    private String country;
 }
