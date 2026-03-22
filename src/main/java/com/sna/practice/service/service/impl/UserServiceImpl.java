@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
     public UserResponse getUserById(Long id) {
         User user = userRepository.findById(id);
         if (user == null) {
-            throw new NotFoundException("User not found with id: " + id);  // ✅
+            throw new NotFoundException("User not found with id: " + id);
         }
         return userMapper.toResponse(user);
     }
@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService {
     public UserResponse updateUser(Long id, UserDTO dto) {
         User existing = userRepository.findById(id);
         if (existing == null) {
-            throw new NotFoundException("User not found with id: " + id);  // ✅
+            throw new NotFoundException("User not found with id: " + id);
         }
         userMapper.updateEntityFromDTO(dto, existing);
         existing.setId(id);
@@ -61,7 +61,7 @@ public class UserServiceImpl implements UserService {
     public void deleteUser(Long id) {
         User existing = userRepository.findById(id);
         if (existing == null) {
-            throw new NotFoundException("User not found with id: " + id);  // ✅
+            throw new NotFoundException("User not found with id: " + id);
         }
         userRepository.deleteById(id);
     }

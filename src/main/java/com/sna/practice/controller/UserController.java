@@ -4,6 +4,7 @@ import com.sna.practice.model.dto.UserDTO;
 import com.sna.practice.model.response.ApiResponse;
 import com.sna.practice.model.response.UserResponse;
 import com.sna.practice.service.UserService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,15 +34,17 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<ApiResponse<UserResponse>> createUser(@RequestBody UserDTO dto) {
+    public ResponseEntity<ApiResponse<UserResponse>> createUser(
+            @Valid @RequestBody UserDTO dto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(
                 ApiResponse.success("User created successfully", userService.createUser(dto))
         );
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ApiResponse<UserResponse>> updateUser(@PathVariable Long id,
-                                                                @RequestBody UserDTO dto) {
+    public ResponseEntity<ApiResponse<UserResponse>> updateUser(
+            @PathVariable Long id,
+            @Valid @RequestBody UserDTO dto) {
         return ResponseEntity.ok(
                 ApiResponse.success("User updated successfully", userService.updateUser(id, dto))
         );
